@@ -71,6 +71,8 @@ License: Revised BSD License, see LICENSE.TXT file include in the project
     #define VERSION_STRING "undefined"
 #endif
 
+#define LORAGW_RESET        "/usr/sbin/reset_lgw.sh"
+
 #define JSON_CONF_DEFAULT   "global_conf.json"
 
 #define DEFAULT_SERVER      127.0.0.1   /* hostname also supported */
@@ -1641,7 +1643,7 @@ int main(int argc, char ** argv)
 
     if (com_type == LGW_COM_SPI) {
         /* Board reset */
-        if (system("./reset_lgw.sh start") != 0) {
+        if (system(LORAGW_RESET" start") != 0) {
             printf("ERROR: failed to reset SX1302, check your reset_lgw.sh script\n");
             exit(EXIT_FAILURE);
         }
@@ -1939,7 +1941,7 @@ int main(int argc, char ** argv)
 
     if (com_type == LGW_COM_SPI) {
         /* Board reset */
-        if (system("./reset_lgw.sh stop") != 0) {
+        if (system(LORAGW_RESET" stop") != 0) {
             printf("ERROR: failed to reset SX1302, check your reset_lgw.sh script\n");
             exit(EXIT_FAILURE);
         }
